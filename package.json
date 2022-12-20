@@ -17,10 +17,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "server":"nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"concurrently \"npm start\"\"npm run Frontend\""
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",

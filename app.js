@@ -14,6 +14,7 @@ const cookieparser = require("cookie-parser");
 // const  bodyParser =  require("body-parser");
 // import path from "path"
 // import {fileURLToPath} from 'url';
+const PORT=require('./config/keys');
 const {fileURLToPath} = require("url")
 
 
@@ -25,7 +26,7 @@ app.use(cookieparser());
 // app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 // app.use(bodyParser.json({limit: '50mb'}));
 
-const PORT = process.env.PORT || 5000;
+const PORT = PORT || 5000;
 
 app.use(express.static('public'));
 
@@ -52,12 +53,13 @@ app.get("/registration",(req,res)=>{
 // // 👇️ "/home/john/Desktop/javascript"
 // const __dirname = path.dirname(__filename);
 
-app.use(express.static(path.join(__dirname, "./Frontend/build")));
-
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./Frontend/build/index.html"));
-});
-
+if(production.env.NODE_ENV=='production'){
+    const path = require('path');
+    app.get('/',(req,res)=>{
+        app.use(express.static(path.resolve(__dirname, 'frontend','build')));
+        res.sendFile(path.resolve(__dirname,'frontend','build','index.html'));
+    })
+}
 
 // app.get("/login",(req,res)=>{
 //     res.render("login");

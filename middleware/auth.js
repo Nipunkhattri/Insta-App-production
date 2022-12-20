@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const photojwt = require("jsonwebtoken");
 const Register = require("../models/register");
+const {SECRET_KEY}=require('./config/keys');
 
 const auth = async (req,res,next)=>{
     console.log("hii");
@@ -8,7 +9,7 @@ const auth = async (req,res,next)=>{
         const token = req.cookies.jwt;
         // const Newtoken = req.cookies.photojwt;
         // console.log(token);
-        const verifyuser = jwt.verify(token,process.env.SECRET_KEY);
+        const verifyuser = jwt.verify(token,SECRET_KEY);
         // const verifynewpost = jwt.verify(Newtoken,process.env.SECRET_KEY);
         // console.log(verifyuser);
         
